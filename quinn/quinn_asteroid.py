@@ -2,8 +2,8 @@
 import pygame
 from colors import *
 
-
-class Asteroid(#insert sprite):
+#give asteroid inheritance from sprite 
+class Asteroid(pygame.sprite.Sprite):
 	#create asteroid object and give it initial position and velocity
 	def __init__(self):
           self.x = random.randint(10,390)
