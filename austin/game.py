@@ -8,7 +8,7 @@ import stars
 FPS = 30
 HEIGHT = 647
 WIDTH = 400
-MAX_STARS = 250
+MAX_STARS = 20
 #s = serial.Serial("/dev/tty/ACM0")
 
 
@@ -22,7 +22,7 @@ def main():
     obj = [screen]
     liststars = []
     for i in range(MAX_STARS):
-        star = stars.Star
+        star = stars.Star()
         liststars.append(star)
     # Create Game Objects
 
@@ -36,8 +36,7 @@ def main():
                 sys.exit()
 
         # Update game logic
-        for star in liststars:
-            star.move(screen,1.0/FPS)
+        map(lambda star: star.move(screen), liststars)
         # Draw updated World
         for object in obj:
             draw(object)
