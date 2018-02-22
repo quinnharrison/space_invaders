@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import pygame
 from colors import *
-
+from random import randrange
 
 class Asteroid(pygame.sprite.Sprite):
 	#create asteroid object and give it initial position and velocity
