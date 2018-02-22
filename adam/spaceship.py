@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 from colors import *
 
+#test atom
 class Spaceship(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__() #call the parent class contructor
@@ -14,7 +15,7 @@ class Spaceship(pygame.sprite.Sprite):
         self.rect.center = (200, 629) #initializes center of the spaceship
     def move(self, time):
         self.rect.move(self.Vx*time, -1*self.Vy*time)
-        
+
     def isHit(self):
         #TODO
         return false
@@ -24,4 +25,3 @@ class Spaceship(pygame.sprite.Sprite):
     def draw(self, surf):
         #draw image on surface
         surf.blit(self.image, self.rect)
-    
