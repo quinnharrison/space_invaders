@@ -9,13 +9,14 @@ class Asteroid(pygame.sprite.Sprite):
           self.x = random.randint(10,390)
           self.y = 0
           self.vy = random.randint(1,10)
-          self.vx = random.randint(1,10)
+          self.vx = 0
           self.asteroid = pygame.Rect((0,0,10,10))
 	
 	#create how asteroid will move with time
 	def move(self,time):
 	  # Move in y direction
           self.y = self.y + self.vy*time
+	  # No motion in x direction (vx == 0)
           self.x = self.x + self.vx*time
 
 	#draw asteroid on surface
