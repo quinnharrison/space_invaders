@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#/usr/bin/python
 import pygame
 from pygame.locals import *
 from colors import *
