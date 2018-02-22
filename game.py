@@ -19,7 +19,7 @@ def main():
     # Create Screen Object
     screen = pygame.display.set_mode((WIDTH,HEIGHT))
     pygame.display.set_caption('Space Invaders')
-    obj = []
+   
     liststars = []
     for i in range(MAX_STARS):
         star = stars.Star()
@@ -27,6 +27,8 @@ def main():
         
     # Create Game Objects
     the_ship = spaceship.Spaceship()
+
+    obj = [the_ship]
 
     while True:
   #      shippos = serial_in()
@@ -42,7 +44,7 @@ def main():
         # Draw updated World
         draw(screen)
         for object in obj:
-           screen.draw(object)
+           object.draw(screen)
         
         fpsClock.tick(FPS)
         
