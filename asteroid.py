@@ -6,9 +6,9 @@ from random import randrange
 class Asteroid(pygame.sprite.Sprite):
 	#create asteroid object and give it initial position and velocity
 	def __init__(self):
-          self.x = random.randint(10,390)
+          self.x = randrange(10,390)
           self.y = 0
-          self.vy = random.randint(1,10)
+          self.vy = randrange(1,10)
           self.vx = 0
           self.asteroid = pygame.Rect((0,0,10,10))
 	
