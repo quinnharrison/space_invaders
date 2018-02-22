@@ -3,7 +3,7 @@
 import pygame, sys, time, random, serial
 from pygame.locals import *
 from colors import *
-import stars
+import stars, spaceship
 
 FPS = 30
 HEIGHT = 647
@@ -19,12 +19,14 @@ def main():
     # Create Screen Object
     screen = pygame.display.set_mode((WIDTH,HEIGHT))
     pygame.display.set_caption('Space Invaders')
-    obj = [screen]
+    obj = []
     liststars = []
     for i in range(MAX_STARS):
         star = stars.Star()
         liststars.append(star)
+        
     # Create Game Objects
+    the_ship = spaceship.Spaceship()
 
     while True:
   #      shippos = serial_in()
@@ -38,8 +40,9 @@ def main():
         # Update game logic
         map(lambda star: star.move(screen), liststars)
         # Draw updated World
+        draw(screen)
         for object in obj:
-            draw(object)
+           screen.draw(object)
         
         fpsClock.tick(FPS)
         
