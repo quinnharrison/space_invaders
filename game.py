@@ -15,7 +15,7 @@ MAX_STARS = 20
 def main():
     pygame.init()
     fpsClock = pygame.time.Clock()
-    
+
     # Create Screen Object
     screen = pygame.display.set_mode((WIDTH,HEIGHT))
     pygame.display.set_caption('Space Invaders')
@@ -25,10 +25,10 @@ def main():
     for i in range(MAX_STARS):
         star = stars.Star()
         liststars.append(star)
-        
+
     the_asteroid = asteroid.Asteroid()
     the_ship = spaceship.Spaceship()
-    
+
     obj = [the_ship, the_asteroid]
 
     while True:
@@ -45,27 +45,25 @@ def main():
         # Draw updated World
         draw(screen)
         for object in obj:
-           object.draw(screen)
-        
+            object.draw(screen)
+
         fpsClock.tick(FPS)
-        
+
 def serial_in():
-        s.write('p')
-	l = s.readline() 
-	x = l.rstrip().split(',')
-	velocity = [int(val) for val in x]
-	return velocity
+    s.write('p')
+    l = s.readline()
+    x = l.rstrip().split(',')
+    velocity = [int(val) for val in x]
+    return velocity
 
 def draw(surf):
-        #1 Draw the sky with a fill
-        surf.fill(BLACK)
-
-        #2 Add the game title
-        fontObj = pygame.font.Font('freesansbold.ttf', 32)
-        textSurfaceObj = fontObj.render('Space Invaders', True, WHITE)
-        textRectObj = textSurfaceObj.get_rect()
-        textRectObj.center = (WIDTH/2,25)
-
-        surf.blit(textSurfaceObj, textRectObj)
+    #1 Draw the sky with a fill
+    surf.fill(BLACK)
+    #2 Add the game title
+    fontObj = pygame.font.Font('freesansbold.ttf', 32)
+    textSurfaceObj = fontObj.render('Space Invaders', True, WHITE)
+    textRectObj = textSurfaceObj.get_rect()
+    textRectObj.center = (WIDTH/2,25)
+    surf.blit(textSurfaceObj, textRectObj)
 
 main()
