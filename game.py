@@ -29,7 +29,7 @@ def main():
     the_asteroid = asteroid.Asteroid()
     the_ship = spaceship.Spaceship()
 
-    obj = [the_ship, the_asteroid]
+    obj = [the_ship]
 
     while True:
   #      shippos = serial_in()
@@ -46,6 +46,7 @@ def main():
         map(lambda star: star.move(screen), liststars)
         # Draw updated World
         draw(screen)
+        the_asteroid.move(screen)
         for object in obj:
             object.draw(screen)
 
