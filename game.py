@@ -9,6 +9,8 @@ FPS = 30
 HEIGHT = 647
 WIDTH = 400
 MAX_STARS = 20
+MAX_ASTEROIDS = 6
+LEVEL = 0.5
 #s = serial.Serial("/dev/tty/ACM0")
 
 
@@ -26,10 +28,16 @@ def main():
         star = stars.Star()
         liststars.append(star)
 
-    the_asteroid = asteroid.Asteroid()
+    asteroid_list = pygame.sprite.Group()
     the_ship = spaceship.Spaceship()
 
-    obj = [the_ship, the_asteroid]
+    obj = [the_ship, asteroid_list]
+
+    # create asteroid field
+    for i in range(MAX_ASTEROIDS):
+      if random.Random() > LEVEL:
+        the_asteroid = asteroid.Asteroid()
+        asteroid_list.add(the_asteroid)
 
     while True:
   #      shippos = serial_in()
@@ -42,8 +50,16 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 the_ship.fire()
 
+        
+
         # Update game logic
         map(lambda star: star.move(screen), liststars)
+        for asteroid in asteroid_list:
+          asteroid.move()
+
+       
+
+        
         # Draw updated World
         draw(screen)
         for object in obj:
