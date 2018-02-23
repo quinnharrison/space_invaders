@@ -36,7 +36,10 @@ class Spaceship(pygame.sprite.Sprite):
         #update and draw phasors
         for phasor in self.phasor_list:
             phasor.move()
-            surf.blit(phasor.image, phasor.rect)
+            if phasor.rect.bottom < 10:
+                phasor.kill()
+            else:
+                surf.blit(phasor.image, phasor.rect)
 
 #NOT FOR USER, PRIVATE CLASS TO SPACESHIP MODULE
 class Phasor(pygame.sprite.Sprite):

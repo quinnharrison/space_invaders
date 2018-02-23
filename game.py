@@ -52,18 +52,30 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     the_ship.Vy -= 1
+                    if the_ship.Vy < -5:
+                        the_ship.Vy = -5
                 elif event.key == pygame.K_DOWN:
                     the_ship.Vy += 1
+                    if the_ship.Vy > 5:
+                        the_ship.Vy = 5
                 elif event.key == pygame.K_LEFT:
                     the_ship.Vx -= 1
+                    if the_ship.Vx < -5:
+                        the_ship.Vx = -5
                 elif event.key == pygame.K_RIGHT:
                     the_ship.Vx += 1
+                    if the_ship.Vx > 5:
+                        the_ship.Vx = 5
 
         # Update game logic
         map(lambda star: star.move(screen), liststars)
         the_ship.move()
       #  for asteroid in asteroid_list:
        #   asteroid.move(screen)
+
+
+
+       
 
         # Draw updated World
         draw(screen)
