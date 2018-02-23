@@ -16,8 +16,8 @@ class Spaceship(pygame.sprite.Sprite):
         self.phasor_list = pygame.sprite.Group() #creates a group for all phasor's
 
 
-    def move(self, time): #moves spaceship and phasors
-        self.rect.move(self.Vx*time, -1*self.Vy*time)
+    def move(self): #moves spaceship and phasors
+        self.rect = self.rect.move(self.Vx, self.Vy)
 
         
 
@@ -47,4 +47,4 @@ class Phasor(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.midbottom = (x,y)
     def move(self): #moves 3 pixels per call
-        self.rect.y -= 3
+        self.rect.y -=25
