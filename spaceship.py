@@ -47,4 +47,4 @@ class Phasor(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.midbottom = (x,y)
     def move(self): #moves 3 pixels per call
-        self.rect.y -= 3
+        self.rect.y -=25
