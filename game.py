@@ -39,6 +39,8 @@ def main():
             if event.type == QUIT:
                 pygame.quit
                 sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                the_ship.fire()
 
         # Update game logic
         map(lambda star: star.move(screen), liststars)
