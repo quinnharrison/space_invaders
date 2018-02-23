@@ -49,9 +49,19 @@ def main():
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 the_ship.fire()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    the_ship.Vy -= 1
+                elif event.key == pygame.K_DOWN:
+                    the_ship.Vy += 1
+                elif event.key == pygame.K_LEFT:
+                    the_ship.Vx -= 1
+                elif event.key == pygame.K_RIGHT:
+                    the_ship.Vx += 1
 
         # Update game logic
         map(lambda star: star.move(screen), liststars)
+        the_ship.move()
       #  for asteroid in asteroid_list:
        #   asteroid.move(screen)
 
