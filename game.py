@@ -9,7 +9,7 @@ FPS = 30
 HEIGHT = 647
 WIDTH = 400
 MAX_STARS = 20
-MAX_ASTEROIDS = 6
+MAX_ASTEROIDS = 4
 LEVEL = 0.5
 #s = serial.Serial("/dev/tty/ACM0")
 
@@ -22,8 +22,8 @@ def main():
     screen = pygame.display.set_mode((WIDTH,HEIGHT))
     pygame.display.set_caption('Space Invaders')
 
-    all_sprites = pygame.sprite.Group()
     asteroid_group = pygame.sprite.Group()
+    dead = []
     
     # Create Game Objects
     liststars = []
@@ -34,16 +34,12 @@ def main():
     #asteroid_list = pygame.sprite.Group()
     the_ship = spaceship.Spaceship()
 
-    all_sprites.add(the_ship)
-
     for i in range(MAX_ASTEROIDS):
         the_asteroid = asteroid.Asteroid()
-        all_sprites.add(the_asteroid)
         asteroid_group.add(the_asteroid)
 
     while True:
-  #      shippos = serial_in()
-
+        # shippos = serial_in()
         # Process Events
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -69,20 +65,39 @@ def main():
                     if the_ship.Vx > 5:
                         the_ship.Vx = 5
 
-        hits = pygame.sprite.spritecollide(the_ship, asteroid_group, True)
-
-        # Update game logic
-        map(lambda star: star.move(screen), liststars)
-
-        all_sprites.update()
-       
-
-        # Draw updated World
-        draw(screen)
-        all_sprites.draw(screen)
-
+        if len(dead) > 0:
+            end_game(screen)
+            pygame.quit
+            sys.exit()
+        else:
+             # Update game logic
+            map(lambda star: star.move(screen), liststars)
+            pygame.sprite.groupcollide(the_ship.phasor_list, asteroid_group, True, True)
+            dead = pygame.sprite.spritecollide(the_ship, asteroid_group, True)
+            #draw world
+            asteroid_group.update()
+            the_ship.update()
+        
+            # Draw updated World
+            draw(screen)
+            the_ship.draw(screen)
+            asteroid_group.draw(screen)
+            pygame.display.update()
         fpsClock.tick(FPS)
+    
+    
 
+
+def end_game(surf):
+    draw(surf)
+    fontObj = pygame.font.Font('freesansbold.ttf', 32)
+    textSurfaceObj = fontObj.render('GAME OVER', True, WHITE)
+    textRectObj = textSurfaceObj.get_rect()
+    textRectObj.center = (WIDTH/2,HEIGHT/2)
+    surf.blit(textSurfaceObj, textRectObj)
+    pygame.display.update()
+    time.sleep(2.0)
+    
 def serial_in():
     s.write('p')
     l = s.readline()
@@ -99,5 +114,6 @@ def draw(surf):
     textRectObj = textSurfaceObj.get_rect()
     textRectObj.center = (WIDTH/2,25)
     surf.blit(textSurfaceObj, textRectObj)
+    
 
 main()
