@@ -3,6 +3,9 @@ import pygame
 from pygame.locals import *
 from colors import *
 
+HEIGHT = 647
+WIDTH = 400
+
 class Spaceship(pygame.sprite.Sprite):
     def __init__(self):
         super(Spaceship, self).__init__() #call the parent class contructor
@@ -17,6 +20,14 @@ class Spaceship(pygame.sprite.Sprite):
 
 
     def move(self): #moves spaceship and phasors
+        if(self.rect.left > WIDTH):
+            self.rect.right = 0
+        elif(self.rect.right < 0):
+            self.rect.left = WIDTH
+        elif(self.rect.top > HEIGHT):
+            self.rect.bottom = 0
+        elif(self.rect.bottom < 0):
+            self.rect.top = HEIGHT
         self.rect = self.rect.move(self.Vx, self.Vy)
 
         
