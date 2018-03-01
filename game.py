@@ -23,6 +23,7 @@ def main():
     pygame.display.set_caption('Space Invaders')
 
     all_sprites = pygame.sprite.Group()
+    asteroid_group = pygame.sprite.Group()
     
     # Create Game Objects
     liststars = []
@@ -38,6 +39,7 @@ def main():
     for i in range(MAX_ASTEROIDS):
         the_asteroid = asteroid.Asteroid()
         all_sprites.add(the_asteroid)
+        asteroid_group.add(the_asteroid)
 
     while True:
   #      shippos = serial_in()
@@ -66,6 +68,8 @@ def main():
                     the_ship.Vx += 1
                     if the_ship.Vx > 5:
                         the_ship.Vx = 5
+
+        hits = pygame.sprite.spritecollide(the_ship, asteroid_group, True)
 
         # Update game logic
         map(lambda star: star.move(screen), liststars)
