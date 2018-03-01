@@ -39,14 +39,17 @@ def main():
         asteroid_group.add(the_asteroid)
 
     while True:
+        #make asteroids
+        if(len(asteroid_group)<MAX_ASTEROIDS):
+            the_asteroid = asteroid.Asteroid()
+            asteroid_group.add(the_asteroid)
+        
         # shippos = serial_in()
         # Process Events
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit
-                sys.exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                the_ship.fire()
+                sys.exit()                
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     the_ship.Vy -= 1
@@ -64,7 +67,9 @@ def main():
                     the_ship.Vx += 1
                     if the_ship.Vx > 5:
                         the_ship.Vx = 5
-
+                elif event.key == pygame.K_SPACE:
+                    the_ship.fire()
+                    
         if len(dead) > 0:
             end_game(screen)
             pygame.quit
