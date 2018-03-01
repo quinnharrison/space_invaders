@@ -29,4 +29,16 @@ class Asteroid(pygame.sprite.Sprite):
         def draw(self,surf):
                 surf.blit(self.image, self.rect)
 
+        def off_screen(self):
+                off = false
+                if(self.rect.centerx > WIDTH):
+                        off = true
+                if(self.rect.centerx < 0):
+                        off = true
+                if(self.rect.centery > HEIGHT):
+                        off = true
+                
+
+                return off
+
 

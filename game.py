@@ -78,6 +78,9 @@ def main():
              # Update game logic
             map(lambda star: star.move(screen), liststars)
             pygame.sprite.groupcollide(the_ship.phasor_list, asteroid_group, True, True)
+            for rock in asteroid_group:
+                if rock.off_screen:
+                    rock.kill
             dead = pygame.sprite.spritecollide(the_ship, asteroid_group, True)
             #draw world
             asteroid_group.update()
