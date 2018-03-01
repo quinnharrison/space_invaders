@@ -19,7 +19,7 @@ class Spaceship(pygame.sprite.Sprite):
         self.phasor_list = pygame.sprite.Group() #creates a group for all phasor's
 
 
-    def move(self): #moves spaceship and phasors
+    def update(self): #moves spaceship and phasors
         if(self.rect.left > WIDTH):
             self.rect.right = 0
         elif(self.rect.right < 0):

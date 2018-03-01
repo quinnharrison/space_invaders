@@ -33,14 +33,14 @@ class Asteroid(pygame.sprite.Sprite):
                 self.image = pygame.transform.scale(self.image, (50,50))
                 self.isHit = False
                 self.rect = self.image.get_rect()
-                self.asteroid_list = pygame.sprite.Group()
+             
 
         def isHit(self):
                 #TODO
                 return false
         
 	#create how asteroid will move with time
-	def move(self,surf):
+	def update(self):
                 if not self.isHit:
                         self.x += self.vx
                         self.y += self.vy
@@ -62,11 +62,9 @@ class Asteroid(pygame.sprite.Sprite):
                 
                                         self.vy = randint(1,5) * mag
                                         self.vx = randint(1,2) * mag
-                        else:
-                                surf.blit(self.image, self.rect)
-                        
-                else:
-                        #TODO
-                        pass
+                       
+
+        def draw(self,surf):
+                surf.blit(self.image, self.rect)
 
 

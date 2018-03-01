@@ -22,6 +22,8 @@ def main():
     screen = pygame.display.set_mode((WIDTH,HEIGHT))
     pygame.display.set_caption('Space Invaders')
 
+    all_sprites = pygame.sprite.Group()
+    
     # Create Game Objects
     liststars = []
     for i in range(MAX_STARS):
@@ -31,13 +33,11 @@ def main():
     #asteroid_list = pygame.sprite.Group()
     the_ship = spaceship.Spaceship()
 
-    obj = [the_ship]
+    all_sprites.add(the_ship)
 
-    # create asteroid field
-   # for i in range(MAX_ASTEROIDS):
-   #   if random.Random() > LEVEL:
-    the_asteroid = asteroid.Asteroid()
-   #     asteroid_list.add(the_asteroid)
+    for i in range(MAX_ASTEROIDS):
+        the_asteroid = asteroid.Asteroid()
+        all_sprites.add(the_asteroid)
 
     while True:
   #      shippos = serial_in()
@@ -69,19 +69,13 @@ def main():
 
         # Update game logic
         map(lambda star: star.move(screen), liststars)
-        the_ship.move()
-      #  for asteroid in asteroid_list:
-       #   asteroid.move(screen)
 
-
-
+        all_sprites.update()
        
 
         # Draw updated World
         draw(screen)
-        the_asteroid.move(screen)
-        for object in obj:
-            object.draw(screen)
+        all_sprites.draw(screen)
 
         fpsClock.tick(FPS)
 
