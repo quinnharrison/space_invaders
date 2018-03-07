@@ -11,7 +11,7 @@ WIDTH = 400
 MAX_STARS = 20
 MAX_ASTEROIDS = 4
 LEVEL = 0.5
-#s = serial.Serial("/dev/tty/ACM0")
+s = serial.Serial("/dev/tty/ACM0")
 
 
 def main():
@@ -43,8 +43,11 @@ def main():
         if(len(asteroid_group)<MAX_ASTEROIDS):
             the_asteroid = asteroid.Asteroid()
             asteroid_group.add(the_asteroid)
-        
-        # shippos = serial_in()
+
+        velocity = serial_in()
+        the_ship.Vx = velocity(0)
+        the_ship.Vy = velocity(1)
+
         # Process Events
         for event in pygame.event.get():
             if event.type == QUIT:
