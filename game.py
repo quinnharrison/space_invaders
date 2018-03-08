@@ -76,6 +76,8 @@ def main():
                     
         if len(dead) > 0:
             end_game(screen)
+            s.write('d')
+
             pygame.quit
             sys.exit()
         else:
