@@ -11,8 +11,9 @@ WIDTH = 400
 MAX_STARS = 20
 MAX_ASTEROIDS = 4
 LEVEL = 0.5
-s = serial.Serial("/dev/ttyACM0")
 
+s = serial.Serial("/dev/ttyACM0", 9600, timeout = 0.5)
+#s.open()
 
 def main():
 
@@ -46,6 +47,7 @@ def main():
             asteroid_group.add(the_asteroid)
 
         velocity = serial_in()
+        print(velocity)
         the_ship.Vx = velocity[0]
         the_ship.Vy = -1*velocity[1]
 
@@ -131,3 +133,4 @@ def draw(surf):
     
 
 main()
+s.close()
