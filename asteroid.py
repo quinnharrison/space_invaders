@@ -24,7 +24,13 @@ class Asteroid(pygame.sprite.Sprite):
 	#create how asteroid will move with time
 	def update(self):
                 self.rect.x += self.vx
-                self.rect.y += self.vy                       
+                self.rect.y += self.vy
+                if (self.rect.x > WIDTH):
+                        self.rect.x = 0
+                elif (self.rect.x < 0):
+                        self.rect.x = WIDTH
+                elif (self.rect.y > HEIGHT):
+                        self.rect.y = 0
 
         def draw(self,surf):
                 surf.blit(self.image, self.rect)

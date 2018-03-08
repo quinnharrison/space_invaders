@@ -11,10 +11,11 @@ WIDTH = 400
 MAX_STARS = 20
 MAX_ASTEROIDS = 4
 LEVEL = 0.5
-s = serial.Serial("/dev/tty/ACM0")
+s = serial.Serial("/dev/ttyACM0")
 
 
 def main():
+
     pygame.init()
     fpsClock = pygame.time.Clock()
 
@@ -45,8 +46,8 @@ def main():
             asteroid_group.add(the_asteroid)
 
         velocity = serial_in()
-        the_ship.Vx = velocity(0)
-        the_ship.Vy = velocity(1)
+        the_ship.Vx = velocity[0]
+        the_ship.Vy = -1*velocity[1]
 
         # Process Events
         for event in pygame.event.get():
