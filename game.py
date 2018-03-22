@@ -50,7 +50,9 @@ def main():
         print(velocity)
         the_ship.Vx = velocity[0]
         the_ship.Vy = -1*velocity[1]
-
+        if (velocity[2] == 0):
+            dead = [1, 1]
+            
         # Process Events
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -78,10 +80,10 @@ def main():
                     
         if len(dead) > 0:
             end_game(screen)
-            s.write('d')
-
+            s.write('p')
             pygame.quit
             sys.exit()
+                
         else:
              # Update game logic
             map(lambda star: star.move(screen), liststars)
