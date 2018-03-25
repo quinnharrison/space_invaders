@@ -118,11 +118,12 @@ def end_game(surf):
     
 def serial_in():
     s.write('p')
-    l = s.readline()
-    x = l.rstrip().split(',')
-    velocity = [int(val) for val in x]
-    return velocity
 
+    l = s.readline()
+    if(len(l)>0):
+        data = [int(x) for x in l.split(',')]
+    return data
+ 
 def draw(surf):
     #1 Draw the sky with a fill
     surf.fill(BLACK)
