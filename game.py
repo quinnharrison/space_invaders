@@ -122,6 +122,8 @@ def serial_in():
     l = s.readline()
     if(len(l)>0):
         data = [int(x) for x in l.split(',')]
+    else:
+        data = [0, 0, 1]
     return data
  
 def draw(surf):
